@@ -15,7 +15,23 @@ const mockUpStrand = () => {
 
 const pAequorFactory = (num, arr) => {
   return {
-    specimenNum: num,
-    dna: arr
+    specimenNum: num, // specimen number
+    dna: arr, // dna strand
+    
+    mutate() { // this method will randomly change one base in the dna strand to a different base
+      const index = Math.floor(Math.random() * 15);
+      let newBase = returnRandBase();
+      
+      while (this.dna[index] === newBase) { // ensures the new base isn't the same as it was
+        newBase = returnRandBase();
+      }
+      
+      this.dna[index] = newBase;
+      
+      return this.dna;
+    },
+
   }
 };
+
+//test = pAequorFactory(1, mockUpStrand());
