@@ -31,7 +31,23 @@ const pAequorFactory = (num, arr) => {
       return this.dna;
     },
 
+    compareDNA(obj) { // this method compares the dna of two specimens and returns a percentage of their similarity.
+      let total = 0; 
+      for (let i = 0; i < obj.dna.length; i++) {
+        console.log(obj.dna[i] + ' & ' + this.dna[i]);
+        if (obj.dna[i] === this.dna[i]) { // will add to the total if the dna bases are the same
+          total++;
+        };
+      };
+      total = (total / this.dna.length) * 100; // final calculation for the percentage
+
+      console.log(`Specimens are ${total.toFixed()}% identical`);
+    },
+
   }
 };
 
-//test = pAequorFactory(1, mockUpStrand());
+let specimen1 = pAequorFactory(1, mockUpStrand());
+let specimen2 = pAequorFactory(2, mockUpStrand());
+
+specimen2.compareDNA(specimen1);
