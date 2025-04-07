@@ -31,7 +31,7 @@ const pAequorFactory = (num, arr) => {
       return this.dna;
     },
 
-    compareDNA(obj) { // this method compares the dna of two specimens and returns a percentage of their similarity.
+    compareDNA(obj) { // this method compares the dna of two specimens and returns a percentage of their similarity
       let total = 0; 
       for (let i = 0; i < obj.dna.length; i++) {
         console.log(obj.dna[i] + ' & ' + this.dna[i]);
@@ -44,10 +44,22 @@ const pAequorFactory = (num, arr) => {
       console.log(`Specimens are ${total.toFixed()}% identical`);
     },
 
+    willLikelySurvive() { // this method will return true or false if the dna strand is 60% or more C or G bases
+      let total = 0; 
+      for (let i = 0; i < this.dna.length; i++) {
+        if (this.dna[i] === 'C' || this.dna[i] === 'G') { // will add to the total if the dna bases are C or G
+          total++;
+        };
+      };
+      total = (total / this.dna.length) * 100;
+      if (total >= 60) { // if the percentage of C or G bases is 60% or more, return true. If not, return false
+        return true;
+      } else {
+        return false
+      };
+    },
   }
 };
 
 let specimen1 = pAequorFactory(1, mockUpStrand());
 let specimen2 = pAequorFactory(2, mockUpStrand());
-
-specimen2.compareDNA(specimen1);
